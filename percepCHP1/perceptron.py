@@ -22,7 +22,12 @@ class perceptron:
                 deltaW = self.eta * (y - predictY) * xi
                 deltab = self.eta * (y - predictY)
 
-                self.w_ += deltaW 
+                self.w_ += deltaW
                 self.b_ += deltab
 
-                errors += int(update != 0.0)
+                errors += int((y - predictY) != 0.0)
+                self.errors_.append(errors)
+            return self
+
+    def predict(self, X):
+        return np.where((np.dot(X, self.w_) + self.b_) >= 0.0, 1, 0)
