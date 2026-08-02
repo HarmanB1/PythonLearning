@@ -15,3 +15,7 @@ class adaline:
         self.b_ = np.float_(0)
 
         for i in range(self.nIter):
+            s
+
+    def net_input(self, X):
+        return np.dot(X, self.w_) + self.b_
