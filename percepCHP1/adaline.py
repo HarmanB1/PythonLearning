@@ -13,9 +13,20 @@ class adaline:
         rgen = np.random.RandomState(self.randomState)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
         self.b_ = np.float_(0)
+        self.losses_ = []
 
         for i in range(self.nIter):
-            s
+            netInput = np.dot(X, self.w_) + self.b_
+            output = self.activation(netInput)
+            errors = y - output  # actual - calculated
+            self.w_ += self.eta * 2.0 * X.T.dot(errors) / X.shape[0]
+            self.b_ += self.eta * 2.0 * errors / X.shape[0]
+            loss = (errors**2).mean()
+            self.losses_.append(loss)
+        return self
 
-    def net_input(self, X):
-        return np.dot(X, self.w_) + self.b_
+    def activation(self, X):
+        return X
+
+    def predict(self, X):
+        return np.where(self.activation(np.dot(X, self.w_) + self.b_) >= 0.5, 1, 0)
