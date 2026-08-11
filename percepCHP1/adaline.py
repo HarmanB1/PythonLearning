@@ -20,7 +20,7 @@ class adaline:
             output = self.activation(netInput)
             errors = y - output  # actual - calculated
             self.w_ += self.eta * 2.0 * X.T.dot(errors) / X.shape[0]
-            self.b_ += self.eta * 2.0 * errors / X.shape[0]
+            self.b_ += self.eta * 2.0 * errors.mean()
             loss = (errors**2).mean()
             self.losses_.append(loss)
         return self
