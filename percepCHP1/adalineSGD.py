@@ -28,7 +28,7 @@ class AdalineSGD:
         return loss
 
     def fit(self, X, y):
-        self._init_weights(X.shape[0])
+        self._init_weights(X.shape[1])
         self.losses_ = []
 
         losses = []
